@@ -1,10 +1,12 @@
 import { APP_CONFIG } from "lib/config"
-import { Language } from "lib/models"
+import { useTranslations } from "lib/hooks"
+import { Language, LanguageCode } from "lib/models"
 import { useState } from "react"
 
 export const useSupportedLanguages = (
     onSuccess: (languages: Array<Language>) => void
 ) => {
+    const T = useTranslations()
     const [isLoading, setLoading] = useState<boolean>(false)
     const [hasError, setHasError] = useState<boolean>(false)
 
@@ -17,12 +19,23 @@ export const useSupportedLanguages = (
 
             fetch(`${APP_CONFIG.API_URL}/languages`)
                 .then(response => {
-                    if (response.ok) return response
+                    if (response.ok) {
+                        return response
+                    }
 
                     throw response
                 })
                 .then(response => response.json())
-                .then(data => console.log(data))
+                .then(languages => {
+                    const allLanguages: Array<Language> = [
+                        {
+                            code: LanguageCode.Auto,
+                            name: T.common.autoTranslate
+                        }
+                    ].concat(languages)
+
+                    onSuccess(allLanguages)
+                })
                 .catch(() => {
                     setHasError(true)
                 })
