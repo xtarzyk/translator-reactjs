@@ -2,10 +2,15 @@ import { Dictionary } from "lib/types";
 
 export const en_GB: Dictionary = {
     common: {
-        autoTranslate: 'Auto translate'
+        autoTranslate: 'Auto translate',
+        companyName: 'Codemask Academy'
     },
-    companyName: 'Codemask Academy',
     components: {
+        app: {
+            loading: 'Fetching supported languages...',
+            error: 'No supported language',
+            empty: 'Something went wrong...'
+        },
         header: {
             title: 'Translator ReactJS',
             github: 'Github',
@@ -19,11 +24,9 @@ export const en_GB: Dictionary = {
             tryAgain: 'Try Again'
         }
     },
-    screen: {
+    screens: {
         translator: {
-            loading: 'Fetching supported languages...',
-            empty: 'No supported language',
-            error: 'Something went wrong'
+            sourceInputPlaceholder: "Type text here..."
         }
     }
 }
