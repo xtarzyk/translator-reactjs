@@ -22,6 +22,9 @@ export const en_GB: Dictionary = {
         },
         message: {
             tryAgain: 'Try Again'
+        },
+        confidence: {
+            error: 'Something went wrong while auto detecting the language'
         }
     },
     screens: {
