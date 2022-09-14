@@ -1,12 +1,12 @@
-import React from "react"
-import styled from "styled-components"
+import React from 'react'
+import styled from 'styled-components'
 
 export const Loader: React.FunctionComponent = ({ children }) => (
     <LoaderContainer>
         <ActivityIndicator />
-        { children && (
+        {children && (
             <ChildrenContainer>
-                { children }
+                {children}
             </ChildrenContainer>
         )}
     </LoaderContainer>
@@ -18,12 +18,10 @@ const ActivityIndicator = styled.div`
     background-color: ${({ theme }) => theme.colors.primary};
     border-radius: 6px;
     animation: loading 1s linear infinite alternate;
-
     @keyframes loading {
         0% {
             width: 0;
         }
-
         100% {
             width: 100%;
         }
