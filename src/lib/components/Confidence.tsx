@@ -1,7 +1,7 @@
-import { useTranslations } from "lib/hooks"
-import { AutoDetectedLanguage, LanguageCode } from "lib/models"
-import { useCallback } from "react"
-import styled from "styled-components"
+import React, { useCallback } from 'react'
+import styled from 'styled-components'
+import { AutoDetectedLanguage, LanguageCode } from 'lib/models'
+import { useTranslations } from 'lib/hooks'
 
 type LanguageProps = {
     disabled: boolean
@@ -9,14 +9,14 @@ type LanguageProps = {
 
 type ConfidenceProps = {
     hasError: boolean,
-    onClick(): void, 
+    onClick(): void,
     autoDetectedLanguage?: AutoDetectedLanguage
 }
 
 export const Confidence: React.FunctionComponent<ConfidenceProps> = ({
     hasError,
     onClick,
-    autoDetectedLanguage = {} as AutoDetectedLanguage
+    autoDetectedLanguage = {}
 }) => {
     const T = useTranslations()
     const { confidence, language } = autoDetectedLanguage
@@ -33,7 +33,7 @@ export const Confidence: React.FunctionComponent<ConfidenceProps> = ({
             ? `(${detectedLanguage})`
             : undefined
     }, [language])
- 
+
     return (
         <Container>
             <Percentage>
@@ -57,12 +57,12 @@ export const Confidence: React.FunctionComponent<ConfidenceProps> = ({
 const Container = styled.div``
 
 const Percentage = styled.span`
-    color: ${({ theme }) => theme.colors.primary};
+    color: ${({ theme }) => theme.colors.primary}
 `
 
 const Language = styled.a<LanguageProps>`
     cursor: ${({ disabled }) => disabled ? undefined : 'pointer'};
     text-decoration: ${({ disabled }) => disabled ? undefined : 'underline'};
     margin-left: 5px;
-    color: ${({ theme, disabled }) => disabled ? theme.colors.error : theme.colors.primary};
+    color: ${({ theme, disabled }) => disabled ? theme.colors.error : theme.colors.primary}
 `
